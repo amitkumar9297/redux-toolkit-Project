@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { add } from '../store/cartSlice'
 
 import { fetchProducts } from '../store/productSlice';
+import { STATUSES } from '../store/productSlice';
 
 const Products = () => {
     const dispatch = useDispatch();
@@ -27,6 +28,16 @@ const Products = () => {
 
         dispatch(add(product))
     }
+
+
+    if (status === STATUSES.LOADING) {
+        return <h2>Loading...</h2>
+    }
+
+    if (status === STATUSES.ERROR) {
+        return <h2>Something Went Wrong</h2>
+    }
+
     return (
         <div className='productsWrapper'>
             {
